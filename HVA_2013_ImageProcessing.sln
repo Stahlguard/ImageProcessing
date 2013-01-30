@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HVA_2013_ImageProcessing", "HVA_2013_ImageProcessing.vcxproj", "{99B36240-106B-4DDF-A943-7007C9CC684A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99B36240-106B-4DDF-A943-7007C9CC684A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{99B36240-106B-4DDF-A943-7007C9CC684A}.Debug|Win32.Build.0 = Debug|Win32
+		{99B36240-106B-4DDF-A943-7007C9CC684A}.Release|Win32.ActiveCfg = Release|Win32
+		{99B36240-106B-4DDF-A943-7007C9CC684A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

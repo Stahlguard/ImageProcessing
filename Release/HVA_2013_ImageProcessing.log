@@ -1,0 +1,16 @@
+﻿Build started 1/23/2013 8:17:29 PM.
+     1>Project "C:\C#\myOpenCVProject\HVA_2013_ImageProcessing\HVA_2013_ImageProcessing.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "C:\C#\myOpenCVProject\Release\".
+       InitializeBuildStatus:
+         Creating "Release\HVA_2013_ImageProcessing.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt HVA_2013_ImageProcessing.cpp stdafx.cpp
+         HVA_2013_ImageProcessing.cpp
+     1>HVA_2013_ImageProcessing.cpp(6): fatal error C1083: Cannot open include file: 'opencv2/imgproc/imgproc.hpp': No such file or directory
+         stdafx.cpp
+     1>Done Building Project "C:\C#\myOpenCVProject\HVA_2013_ImageProcessing\HVA_2013_ImageProcessing.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.55
