@@ -84,13 +84,13 @@ int _tmain(int argc, _TCHAR* argv[])
    // get the rectangles from the polygon vectors
    for (int ploy = 0; ploy < contours.size(); ploy++)
    {
-      approxPolyDP(Mat(contours[ploy]), contours_poly[ploy], 3, true);
+      approxPolyDP(Mat(contours[ploy]), contours_poly[ploy], 10, true);
       boundRect[ploy] = boundingRect(Mat(contours_poly[ploy]));
       minEnclosingCircle(contours_poly[ploy], center[ploy], radius[ploy]);
    }
 
    // draw polygonal contour + bonding rects + circles
-   Mat drawing = Mat::zeros(image.size(), CV_8UC3);
+   Mat drawing(mask);
    for (int contour = 0; contour < contours.size(); contour++)
    {
       // only accept rectangles greater than a minimum size
@@ -101,8 +101,11 @@ int _tmain(int argc, _TCHAR* argv[])
          // get the color of the pixel in the center of the rectangle
          Vec3b plane = image.at<Vec3b>(center[contour].y, center[contour].x);
 
-		 printf("Contour: %d (%d, %d)\n", contour, (int)  center[contour].x, (int) center[contour].y); 
+		 printf("Contour: %d (%d, %d) %d\n", contour, (int)  center[contour].x, (int) center[contour].y, contours[contour].size()); 
 
+		 int size = 4;
+		 //cvPolyLine(drawing, &contours[contour],	
+		 drawContours(drawing, contours, contour, Scalar(255,0,0));
          // indicate that a rectangle was found
          foundRectangles++;
       }
