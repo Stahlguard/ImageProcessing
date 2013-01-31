@@ -24,7 +24,7 @@ int _tmain(int argc, _TCHAR* argv[])
    printf("Width: %d  Height: %d\n", image.cols, image.rows);
 
    // resize the image
-   resize(image, image, Size(320, 240));
+   //resize(image, image, Size(320, 240));
 
    //Mat blurryImage;
 
@@ -47,13 +47,13 @@ int _tmain(int argc, _TCHAR* argv[])
    
    inRange(HSVimage, Scalar((int) (103 / 240.0f * 180 ),
                             (int) (100 / 240.0f * 255),
-                            (int) (100 / 240.0f * 255)),
+                            (int) (150 / 240.0f * 255)),
                      Scalar((int) (118 / 240.0f * 180),
                             (int) (240 / 240.0f * 255),
                             (int) (240 / 240.0f * 255)), mask);
 
    // create an image for the mask
-   imshow("Mask Image", mask);
+   
 
 	//int erosion_size = 1;
 
@@ -70,10 +70,11 @@ int _tmain(int argc, _TCHAR* argv[])
    int                   foundRectangles = 0;
    vector<vector<Point>> contours;
    vector<Vec4i>         hierarchy;
-   Mat                   hsv;
+   Mat                   contourImg;
+   mask.copyTo(contourImg);
 
    // find contours in the mask
-   findContours(mask, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
+   findContours(contourImg, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 
    // approximate contours to polygons + get bounding rects and circles
    vector<vector<Point>> contours_poly(contours.size());
@@ -84,13 +85,17 @@ int _tmain(int argc, _TCHAR* argv[])
    // get the rectangles from the polygon vectors
    for (int ploy = 0; ploy < contours.size(); ploy++)
    {
-      approxPolyDP(Mat(contours[ploy]), contours_poly[ploy], 10, true);
+      approxPolyDP(Mat(contours[ploy]), contours_poly[ploy], arcLength(contours[ploy],true)*0.05, true);
+	 //approxPolyDP(Mat(contours[ploy]), contours_poly[ploy], 10, true);
       boundRect[ploy] = boundingRect(Mat(contours_poly[ploy]));
       minEnclosingCircle(contours_poly[ploy], center[ploy], radius[ploy]);
    }
 
    // draw polygonal contour + bonding rects + circles
-   Mat drawing(mask);
+   Mat drawing;
+   imshow("Mask Image", mask);
+   cvtColor(mask, drawing, CV_GRAY2BGR);
+
    for (int contour = 0; contour < contours.size(); contour++)
    {
       // only accept rectangles greater than a minimum size
@@ -101,11 +106,11 @@ int _tmain(int argc, _TCHAR* argv[])
          // get the color of the pixel in the center of the rectangle
          Vec3b plane = image.at<Vec3b>(center[contour].y, center[contour].x);
 
-		 printf("Contour: %d (%d, %d) %d\n", contour, (int)  center[contour].x, (int) center[contour].y, contours[contour].size()); 
+		 printf("Contour: %d (%d, %d) %d %f\n", contour, (int)  center[contour].x, (int) center[contour].y, contours[contour].size(), arcLength(contours[contour],true)); 
 
 		 int size = 4;
 		 //cvPolyLine(drawing, &contours[contour],	
-		 drawContours(drawing, contours, contour, Scalar(255,0,0));
+		 drawContours(drawing, contours, contour, Scalar(180,105,255),2);
          // indicate that a rectangle was found
          foundRectangles++;
       }
