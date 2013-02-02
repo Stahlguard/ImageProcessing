@@ -1,7 +1,7 @@
 // HVA_2013_ImageProcessing.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include <opencv2/imgproc/imgproc.hpp> // Gaussian Blur
 #include <opencv2/core/core.hpp>       // Basic OpenCV structures (cv::Mat, Scalar)
@@ -9,10 +9,10 @@
 
 using namespace cv;
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char** argv[])
 {
    Mat image;
-   string fileName = "C:\\Images\\retroreflective.png";
+   string fileName = "retroreflective.png";
 
    // read the image
    image = imread(fileName, 1);
